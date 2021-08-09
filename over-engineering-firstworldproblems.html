@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - Over-engineering #firstworldproblems</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="alert" />
+    <meta name="tags" content="automation" />
+    <meta name="tags" content="kickstarter" />
+    <meta name="tags" content="pebble" />
+    <meta name="tags" content="push" />
+    <meta name="tags" content="python" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="./"><img src="./theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="./pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Mon 27 April 2015 : Web Development : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="./over-engineering-firstworldproblems.html" rel="bookmark"
+         title="Permalink to Over-engineering #firstworldproblems">Over-engineering #firstworldproblems</a></h2>
+ 
+  <div class="entry-content">
+    <p>I have finally backed a kickstarter campaign for the first time. It's a <a href="https://www.kickstarter.com/projects/tiko3d/tiko-the-unibody-3d-printer">3D printer called Tiko</a> and I'm really excited about receiving it. So excited in fact that I would really like to get it earlier than the February ETA I originally pledged for.</p>
+<p>Some of the early backers have been concerned about the lack of updates, photos and videos from the Tiko team and have been cancelling their pledges. This has opened spaces in the pledges with earlier estimated shipping dates. The other day I was fortunate that I refreshed the page at just the right moment and managed to change my pledge to one with a January shipment. That got me wondering if I could come up with something that would alert me when the slots opened up.</p>
+<p>It turns out I was not alone in my thinking as there is a <a href="https://github.com/birla/kickstarter-pledge-watch-and-manage">project on github</a> that automates the whole process, including managing your pledge. The author notes that it is somewhat dubious and probably goes against kickstarter's T's &amp; C's. So I decided that I'd have a go at rolling my own version that would just alert me.</p>
+<p>Everything I read said that for scraping Python was the way to go. Having never written a line of python I thought it would be an interesting project to play with a new language. I quickly found <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> and after a few visits to a number of <a href="http://kennyledet.github.io/tutorials/2013/12/19/web-scraping-with-python-and-beautifulsoup.html">tutorials</a> I had a script that would output the info I wanted to the command line.</p>
+<h2>Automating and alerting</h2>
+<p>This first script would have been fine if I was always sat at my laptop but ultimately isn't anymore useful than hitting cmd-r on the kickstarter page itself. So I needed a way for the script to alert me. I remembered playing with <a href="https://pushover.net/">PushOver</a> a while back to get alerts from my minecraft server. I created an account with them and set up an application, looked at their <a href="https://pushover.net/faq#library-python">python documentation</a>, installed the iOS app on my phone and that was that.</p>
+<p>All that was left was to automate running the script. I've heard of cron jobs but had never needed to create one until now. A quick google lead me to <a href="http://www.maclife.com/article/columns/terminal_101_creating_cron_jobs">a simple tutorial</a> and I was up and running.</p>
+<h2>Putting it all together</h2>
+<p>The cron job triggers the script, the script scrapes for all of the reward info from the kickstarter page. If there is a reward with a ship date in November and there are currently less than the maximum number of backers it triggers a PushOver notification. My phone then receives the notification and pushes it to my pebble.</p>
+<p>Within five hours of launching the cron job my pebble buzzed to tell me the November slot was available and after some over-excited mashing of the keyboard I secured the slot.</p>
+<p>Win!</p>
+<h2>The script itself</h2>
+<p>As I mentioned earlier I have never written a line of python before this project. The code below works but it definitely could be refactored and improved (try not to judge me).</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">httplib</span><span class="o">,</span> <span class="nn">urllib</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.kickstarter.com/projects/tiko3d/tiko-the-unibody-3d-printer/description&quot;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="n">rewards</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;li&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;NS-projects-reward&quot;</span><span class="p">})</span>
+
+<span class="nb">print</span> <span class="s2">&quot;nn&quot;</span>
+
+<span class="k">for</span> <span class="n">reward</span> <span class="ow">in</span> <span class="n">rewards</span><span class="p">:</span>
+    <span class="n">rewardCost</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">reward</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;h5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">shipDate</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">reward</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">numBackers</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">reward</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="s2">&quot;num-backers&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">numBackers</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; backers&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+
+    <span class="c1"># backersClean = backers.rstrip()</span>
+    <span class="k">if</span> <span class="n">shipDate</span> <span class="o">==</span> <span class="s2">&quot;Nov 2015&quot;</span> <span class="ow">and</span> <span class="n">rewardCost</span> <span class="o">==</span> <span class="s2">&quot;$179 USD&quot;</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">2500</span><span class="p">:</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">httplib</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s2">&quot;api.pushover.net:443&quot;</span><span class="p">)</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;/1/messages.json&quot;</span><span class="p">,</span>
+          <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span>
+            <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;[TOKEN]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;[USER]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;$179 reward now available&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="s2">&quot;iphone&quot;</span><span class="p">,</span>
+          <span class="p">}),</span> <span class="p">{</span> <span class="s2">&quot;Content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span> <span class="p">})</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">shipDate</span> <span class="o">==</span> <span class="s2">&quot;Nov 2015&quot;</span> <span class="ow">and</span> <span class="n">rewardCost</span> <span class="o">==</span> <span class="s2">&quot;$139 USD&quot;</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">:</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">httplib</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s2">&quot;api.pushover.net:443&quot;</span><span class="p">)</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;/1/messages.json&quot;</span><span class="p">,</span>
+          <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span>
+            <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;[TOKEN]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;[USER]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;$139 reward now available&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="s2">&quot;iphone&quot;</span><span class="p">,</span>
+          <span class="p">}),</span> <span class="p">{</span> <span class="s2">&quot;Content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span> <span class="p">})</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">shipDate</span> <span class="o">==</span> <span class="s2">&quot;Nov 2015&quot;</span> <span class="ow">and</span> <span class="n">rewardCost</span> <span class="o">==</span> <span class="s2">&quot;$99 USD&quot;</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">httplib</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s2">&quot;api.pushover.net:443&quot;</span><span class="p">)</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;/1/messages.json&quot;</span><span class="p">,</span>
+          <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span>
+            <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;[TOKEN]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;[USER]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;$99 reward now available&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="s2">&quot;iphone&quot;</span><span class="p">,</span>
+          <span class="p">}),</span> <span class="p">{</span> <span class="s2">&quot;Content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span> <span class="p">})</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+<p><strong>UPDATE:</strong> Disappointingly it looks like <a href="https://www.kickstarter.com/projects/tiko3d/tiko-the-unibody-3d-printer/posts/1809879">my Tiko is never going to arrive</a> as the creators seem to have run out of money.</p>
+<p><strong>ADDITIONAL UPDATE (2021):</strong> Tiko 3D never delivered anything, the team behind it kept all the money and all the backers lost their investments. And that kids is why you shouldn't back projects on kickstarter!</p>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="./whats-my-motivation.html">
+                What's my motivation?
+            </a>
+        </li>
+        <li>
+            Next: <a href="./peeking-behind-the-curtain.html">
+                Peeking behind the curtain
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Prev in Web Development: <a href="./dynamically-generate-product-variations-with-php.html">
+                Dynamically Generate Product Variations with PHP
+            </a>
+        </li>
+        <li>
+            Next in Web Development: <a href="./peeking-behind-the-curtain.html">
+                Peeking behind the curtain
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

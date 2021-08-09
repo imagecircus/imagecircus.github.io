@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - Tekkit Classic with Minecraft 1.6.2</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="1-6-2" />
+    <meta name="tags" content="forge" />
+    <meta name="tags" content="minecraft" />
+    <meta name="tags" content="mods" />
+    <meta name="tags" content="server" />
+    <meta name="tags" content="tekkit-classic" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="./"><img src="./theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="./pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Sat 14 September 2013 : Projects : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="./tekkit-classic-with-minecraft-162.html" rel="bookmark"
+         title="Permalink to Tekkit Classic with Minecraft 1.6.2">Tekkit Classic with Minecraft 1.6.2</a></h2>
+ 
+  <div class="entry-content">
+    <p><strong>Note: This post was originally published on iamianwright.com it's been moved here for archival purposes.</strong></p>
+<p>Following on from my <a href="/building-a-custom-forge-minecraft-1-6-2-server/" title="Previous post">previous post</a> I wanted to write a little more about the issues I found trying to get all of the Tekkit Classic mods working with Minecraft 1.6.2.</p>
+<p>Having discussed everyone's requirements, my friends and I agreed that we wanted all the features of Tekkit Classic with the additions of Stargate, Twilight Forest, Archimedes Ships, Useful Foods, Treecapitator and a few others. I read a lot of guides and figured out <a href="/building-a-custom-forge-minecraft-1-6-2-server/" title="How to build a custom Forge server with Minecraft 1.6.2">how to set up a custom Forge server for Minecraft 1.6.2</a>.</p>
+<p>Now we can install any mods we want but there are some caveats. Firstly not all mods work with Minecraft 1.6.2 and secondly not all mods work with each other. This is where we hit the first problem, Tekkit Classic is built on Minecraft 1.2.5 so all of the mods that come with it are designed for that. Some of them have been updated to 1.6.2 but unfortunately not all.</p>
+<table>
+<thead>
+<tr>
+<th>Mod Name</th>
+<th>1.6.2</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Balkon's Weapon Mod</td>
+<td>Yes</td>
+<td><a href="http://www.minecraftforum.net/topic/211517-162forge-balkons-weaponmod-v113-now-with-flintlock-pistol/" title="Balkon's Weapon Mod">Here</a></td>
+</tr>
+<tr>
+<td>BuildCraft</td>
+<td>Yes</td>
+<td><a href="http://minecraft.curseforge.com/mc-mods/buildcraft/files/4-build-craft-4-0-2/" title="Buildcraft 4.0.2">Here</a></td>
+</tr>
+<tr>
+<td>BuildCraft Additional Pipes</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>ccSensors</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>ComputerCraft</td>
+<td>Yes</td>
+<td><a href="http://www.computercraft.info/2013/07/11/computercraft-1-55/" title="ComputerCraft 1.55 for MC 1.6.2">Here</a></td>
+</tr>
+<tr>
+<td>IC2 Charging Bench</td>
+<td>Yes</td>
+<td><a href="http://forum.industrial-craft.net/index.php?page=Thread&amp;threadID=929">Here</a></td>
+</tr>
+<tr>
+<td>Dimensional Anchors</td>
+<td>Yes</td>
+<td><a href="http://immibis.com/mcmoddl/" title="All Immibis' Mods">Here</a></td>
+</tr>
+<tr>
+<td>Equivalent Exchange 2</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>Ender Storage</td>
+<td>Yes</td>
+<td><a href="http://www.chickenbones.craftsaddle.org/Files/New_Versions/links.php" title="All ChickenBones' Mods">Here</a></td>
+</tr>
+<tr>
+<td>Industrial Craft 2</td>
+<td>Yes</td>
+<td><a href="http://www.9minecraft.net/industrial-craft-2-mod/">Here</a></td>
+</tr>
+<tr>
+<td>IC2 Advanced Machines</td>
+<td>Yes</td>
+<td><a href="http://forum.industrial-craft.net/index.php?page=Thread&amp;threadID=4907">Here</a></td>
+</tr>
+<tr>
+<td>IC2 Compact Solars</td>
+<td>Yes</td>
+<td><a href="http://forum.industrial-craft.net/index.php?page=Thread&amp;threadID=4827">Here</a></td>
+</tr>
+<tr>
+<td>IC2 Nuclear Control</td>
+<td>Yes</td>
+<td><a href="http://forum.industrial-craft.net/index.php?page=Thread&amp;threadID=5915">Here</a></td>
+</tr>
+<tr>
+<td>Immibis Core</td>
+<td>Yes</td>
+<td><a href="http://immibis.com/mcmoddl/" title="All Immibis' Mods">Here</a></td>
+</tr>
+<tr>
+<td>Inventory Tweaks</td>
+<td>Yes</td>
+<td><a href="http://www.minecraftforum.net/topic/1720872-162-inventory-tweaks-156-august-21/">Here</a></td>
+</tr>
+<tr>
+<td>Iron Chests</td>
+<td>Yes</td>
+<td><a href="http://www.9minecraft.net/iron-chests-mod/">Here</a></td>
+</tr>
+<tr>
+<td>MAtmos</td>
+<td>Yes</td>
+<td><a href="http://www.minecraftforum.net/topic/379925-162-matmos-r25-environmental-sound-atmosphere-simulator/">Here</a></td>
+</tr>
+<tr>
+<td>Modular Force Field System</td>
+<td>Yes</td>
+<td><a href="http://immibis.com/mcmoddl/" title="All Immibis' Mods">Here</a></td>
+</tr>
+<tr>
+<td>Not Enough Items</td>
+<td>Yes</td>
+<td><a href="http://www.chickenbones.craftsaddle.org/Files/New_Versions/links.php" title="All ChickenBones' Mods">Here</a></td>
+</tr>
+<tr>
+<td>Nether Ores</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>Power Converters</td>
+<td>Yes</td>
+<td><a href="http://www.minecraft12.com/power-converters-mod/">Here</a></td>
+</tr>
+<tr>
+<td>Railcraft</td>
+<td>Yes</td>
+<td><a href="http://www.9minecraft.net/railcraft-mod/">Here</a></td>
+</tr>
+<tr>
+<td>Red Power</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>Rei's Minimap</td>
+<td>Yes</td>
+<td><a href="http://www.9minecraft.net/reis-minimap-mod/">Here</a></td>
+</tr>
+<tr>
+<td>Tube Stuff</td>
+<td>Yes</td>
+<td><a href="http://immibis.com/mcmoddl/" title="All Immibis' Mods">Here</a></td>
+</tr>
+<tr>
+<td>Wireless Redstone WR-CBE</td>
+<td>Yes</td>
+<td><a href="http://www.chickenbones.craftsaddle.org/Files/New_Versions/links.php" title="All ChickenBones' Mods">Here</a></td>
+</tr>
+</tbody>
+</table>
+<p>Of the modules missing the Additional Pipes for Buildcraft and the Sensors for ComputerCraft were no big deal as I don't think any of us have ever used them.  Equivalent Exchange 2 not being available is a bigger problem as one of my friends is very keen on that mod.  EE3 is available for 1.6.2 but it is arguably not as good (or perhaps it's just more balanced). Nether Ores are no big loss either as none of us really mine in the nether.</p>
+<p>Red Power is an issue though as it includes so many features. There are some modders working on creating similar mods for 1.6.2, Immibis has <a href="http://www.minecraftforum.net/topic/1852277-162-redlogic-wip-replacement-for-rp2-wiringlogiccontrollighting/" title="RedLogic WIP replacement for RedPower">RedLogic</a> and I came across a few others.</p>
+<p>Unfortunately I was unable to get RedLogic or Equivalent Exchange 3 to install with the other mods on my server.  I'm hoping there will be some updates that may resolve that in the near future as they make up a large chunk of the features of Tekkit Classic.</p>
+<p>This is my final set of mods, including what I could from Tekkit Classic and the additional ones that we wanted.</p>
+<ul>
+<li>Advanced Repulsion Systems 56.0.0</li>
+<li>Advanced Machines 56.0.0</li>
+<li>Arhimede's Ships 1.6.2</li>
+<li>BuildCraft 4.0.2</li>
+<li>ChickenChunks 1.3.3.2</li>
+<li>CodeChickenCore 0.9.0.5</li>
+<li>ComputerCraft 1.5.6</li>
+<li>Dimensional Anchor 56.0.1</li>
+<li>Dyeable Beds 1.6.2</li>
+<li>EnderStorage 1.4.2.2</li>
+<li>Greg's SG Craft Mod 1.6.2</li>
+<li>Immibis Core 56.0.5</li>
+<li>Immibis MicroBlocks 56.0.5</li>
+<li>Industrial Craft 2</li>
+<li>Infinitubes 56.0.1</li>
+<li>Iron Chests 1.6.2</li>
+<li>IC2 Charging Bench 1.90</li>
+<li>Not Enough Items 1.6.1.3</li>
+<li>Teleport Pipes Mod 1.6.2</li>
+<li>Timber! 1.6.2</li>
+<li>Twilight Forst 1.19.3</li>
+<li>Useful Food 1.6.2</li>
+<li>Weapon Mod</li>
+</ul>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="./pebble-review.html">
+                Pebble Review
+            </a>
+        </li>
+        <li>
+            Next: <a href="./building-a-custom-forge-minecraft-162-server.html">
+                Building a Custom Forge Minecraft 1.6.2 Server
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Prev in Projects: <a href="./yogcraft-and-server-texture-packs.html">
+                YogCraft and Server Texture Packs
+            </a>
+        </li>
+        <li>
+            Next in Projects: <a href="./building-a-custom-forge-minecraft-162-server.html">
+                Building a Custom Forge Minecraft 1.6.2 Server
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

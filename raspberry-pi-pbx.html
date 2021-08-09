@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - Raspberry Pi PBX</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="pbx" />
+    <meta name="tags" content="raspberry-pi" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="./"><img src="./theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="./pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Sat 04 May 2013 : Projects : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="./raspberry-pi-pbx.html" rel="bookmark"
+         title="Permalink to Raspberry Pi PBX">Raspberry Pi PBX</a></h2>
+ 
+  <div class="entry-content">
+    <p><strong>Note: This post was originally published on iamianwright.com it's been moved here for archival purposes.</strong></p>
+<p>I’ve been looking at a cheap and flexible solution to having a separate phone number for business calls. I recently came across a post detailing how to use the Raspberry Pi as a PBX. It seems like it will more than cover my needs and as it comes in at under £50 for everything I figured it was worth a go.</p>
+<p>I had planned to write a detailed post explaining what was involved in setting it up but it was much easier than I expected.  Essentially you download the image for the SD card use PiWriter to <a href="http://sourceforge.net/projects/piwriter/" title="PiWriter">copy img to SD card from the Mac.</a>  Plug in power and ethernet, SSH into the Pi to make a few changes and then everything else can be done via the web interface.</p>
+<p>I followed the <a href="http://nerdvittles.com/?p=5527" title="Incredible PBX 3.11 for Raspberry Bi">instructions for installing Incredible PBX on the Raspberry Pi</a> from Nerd Vittles.  Next I needed a VoIP account and as I'm in the UK sadly google voice wasn't an option.  So I signed up for a <a href="http://www.sipgate.co.uk/user/" title="Free phone service over your broadband line">free SIP account</a> at Sipgate and then followed these <a href="http://sysadminman.net/blog/2012/asterisknow-setting-up-a-trunk-and-outbound-calls-with-sipgate-4259" title="Setting up a Sipgate trunk in FreePBX">steps to set up a Sipgate trunk</a>.</p>
+<p>I'm using <a href="http://www.counterpath.com/x-lite.html" title="X-lIte">X-Lite</a> on my macbook air as my soft phone at the moment.  I have incoming and outgoing calling working perfectly.  Currently calls do go to voicemail if unanswered but no messages are recorded.</p>
+<p>The next plan is to set up a VPN tunnel into my home network so I can run a SIP client on my iPhone that will work as an extension of the PBX.  The upside is that as it's an internal extension there won't be any charge to pass the call on.  The downside is that it requires my phone to have an internet connection which is a rare thing in Thanet.</p>
+<p>Ultimately I want the system to recognise if I'm home or not and automatically divert calls to the appropriate extension.  I'm sure this should be possible by looking to see if my iPhone's MAC address is connected to the network.  Now I just need to figure out how to make a change in asterisk based on network information.</p>
+<p>The project <a href="/figuring-out-freepbx/" title="Figuring out FreePBX">continues...</a></p>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="./white-macbook-vs-samsung-tv.html">
+                White MacBook vs Samsung TV
+            </a>
+        </li>
+        <li>
+            Next: <a href="./figuring-out-freepbx.html">
+                Figuring out FreePBX
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Prev in Projects: <a href="./360-controller-with-lion-continued.html">
+                360 Controller with Lion Continued
+            </a>
+        </li>
+        <li>
+            Next in Projects: <a href="./figuring-out-freepbx.html">
+                Figuring out FreePBX
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

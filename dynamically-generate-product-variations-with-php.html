@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - Dynamically Generate Product Variations with PHP</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="dynamic" />
+    <meta name="tags" content="image" />
+    <meta name="tags" content="jquery" />
+    <meta name="tags" content="php" />
+    <meta name="tags" content="product" />
+    <meta name="tags" content="variations" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="./"><img src="./theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="./pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Fri 16 August 2013 : Web Development : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="./dynamically-generate-product-variations-with-php.html" rel="bookmark"
+         title="Permalink to Dynamically Generate Product Variations with PHP">Dynamically Generate Product Variations with PHP</a></h2>
+ 
+  <div class="entry-content">
+    <p><strong>Note: This post was originally published on iamianwright.com it's been moved here for archival purposes.</strong></p>
+<p>"Why can't I just dynamically generate product variations with PHP?", I thought, "Surely that must be how other people do this!".</p>
+<p>I've been working on an ecommerce site, with Drupal Commerce, for a business that a friend and I have started up. We're selling sports clothing that is made to order. The customer is able to pick a style, two colours and a size. There are eighteen available colours so for each style there are over three hundred variations that could be chosen. As well as building the site I am creating artwork for the products. They are fairly simple vectors that use only two flat colours with a black outline on top.</p>
+<p>As simple as they were generating over three hundred images per product was <strong>not</strong> an option.</p>
+<p>It also turns out that all of the commerce platforms I looked at, including drupal commerce, expect you to define all of the variations and then assign an image to each. There are ways of importing product catalogues into DC but it seemed unnecessary as the products are all made to order so there's no stock to track.  So this became my <a href="http://www.drupalcommerce.org/comment/8102" title="first challenge">first challenge</a>.  Eventually after reading half of the internet I found a drupal module called <a href="https://drupal.org/project/commerce_custom_product" title="Commerce Customizable Product">Commerce Customizable Products</a>.  It allows you to specify fields the user has to complete before adding a product to their cart. I used it to add size and colour options along with two image upload fields.</p>
+<p>So that took care of capturing the information from the customer's order but I was no closer to generating the product images. After scouring yet more of the internet I posted to <a href="http://stackoverflow.com/questions/18244170/how-can-i-generate-two-colour-product-images-dynamically" title="stackoverflow">stackoverflow</a> in the hope the wisdom of crowds would provide me an answer. Sadly there were none forthcoming. I continued reading everything I could about manipulating images with PHP and eventually I solved my own problem.</p>
+<p>To create the images dynamically I have created one GIF that contains the white background, a pure red and pure blue region to define the primary and secondary areas. This is run through GD which changes the red and blue to the user selected colours. Then a transparent PNG is merged on top which contains the black outline and the company logo (see example at top of post).</p>
+<p>I then created a page with selection boxes for colours and style and used a little jQuery to pass those options to the PHP that generates the image.  When the script receives the options it uses them to create a filename for the image that it will produce but first it checks to see if that file already exists.  If it does then it returns the existing file if not it creates it on the server for future use and returns it.</p>
+<p>I have put up a demo with all the scripts that you need to <a href="http://clients.imagecircus.com/color/index.php" title="dynamically generate product variations with PHP">dynamically generate product variations with PHP</a>.  There's a <a href="http://clients.imagecircus.com/color/product-images.zip" title="link to a zip file">link to a zip file</a> that includes all of the code and some images on that page too.</p>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="./yogcraft-and-server-texture-packs.html">
+                YogCraft and Server Texture Packs
+            </a>
+        </li>
+        <li>
+            Next: <a href="./fix-network-drivers-for-xp-in-boot-camp.html">
+                Fix Network Drivers for XP in Boot Camp
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Prev in Web Development: <a href="./jquery-mousemove-project.html">
+                jQuery mousemove project
+            </a>
+        </li>
+        <li>
+            Next in Web Development: <a href="./over-engineering-firstworldproblems.html">
+                Over-engineering #firstworldproblems
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

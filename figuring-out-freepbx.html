@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - Figuring out FreePBX</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="freepbx" />
+    <meta name="tags" content="iphone" />
+    <meta name="tags" content="pbx" />
+    <meta name="tags" content="raspberry-pi" />
+    <meta name="tags" content="sip" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="./"><img src="./theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="./pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Sat 04 May 2013 : Projects : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="./figuring-out-freepbx.html" rel="bookmark"
+         title="Permalink to Figuring out FreePBX">Figuring out FreePBX</a></h2>
+ 
+  <div class="entry-content">
+    <p><strong>Note: This post was originally published on iamianwright.com it's been moved here for archival purposes.</strong></p>
+<p>In a moment of clarity I realised I was massively overcomplicating how to go about directing calls.  I had wanted the PBX to know if I was out of the house and route calls to the extension on my iPhone instead of my Mac.  When I thought about it this evening I realised that's completely unnecessary as FreePBX lets you set a rule for what to do if an extension is unreachable.  So I have now set it up so that if the softphone on my Mac isn't signed in then the call forwards to the extension for my iPhone.</p>
+<p>On the subject of the iPhone, it turns out there are a number of SIP clients out there.  I've tried a few of them but so far the most reliable one has been <a href="https://itunes.apple.com/gb/app/3cxphone-voip-sip-softphone/id392927995?mt=8" title="3CXPhone / VoIP / SIP Softphone for iOS">3CXPhone</a> as it has the ability to accept calls in the background and when the device is on standby.  The only downside is that the ringtone is Marimba which I can't stand and sadly there is no option to change it.</p>
+<p>It's all coming together quicker than I expected but there are still a few things to tick off:-</p>
+<ul>
+<li>Setup a VPN so I can connect externally.</li>
+<li>Configure the PBX to only allow calls through between 9am and 5pm Monday to Friday.  All other calls should go to voicemail and the messages forwarded to my email account.</li>
+<li>Record better messages for any of the greetings or menus I'll be using rather than the robotic American voice currently being used.</li>
+</ul>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="./raspberry-pi-pbx.html">
+                Raspberry Pi PBX
+            </a>
+        </li>
+        <li>
+            Next: <a href="./airplay-amp-on-a-budget.html">
+                Airplay Amp on a Budget
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Prev in Projects: <a href="./raspberry-pi-pbx.html">
+                Raspberry Pi PBX
+            </a>
+        </li>
+        <li>
+            Next in Projects: <a href="./airplay-amp-on-a-budget.html">
+                Airplay Amp on a Budget
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>
