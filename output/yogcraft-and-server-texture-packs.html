@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - YogCraft and Server Texture Packs</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="10mb" />
+    <meta name="tags" content="feed-the-beast" />
+    <meta name="tags" content="free-apps" />
+    <meta name="tags" content="mac" />
+    <meta name="tags" content="minecraft" />
+    <meta name="tags" content="optimise" />
+    <meta name="tags" content="png" />
+    <meta name="tags" content="server" />
+    <meta name="tags" content="server-texture" />
+    <meta name="tags" content="tekkit" />
+    <meta name="tags" content="texture-pack" />
+    <meta name="tags" content="voltz" />
+    <meta name="tags" content="yogcraft" />
+    <meta name="tags" content="zip" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="/"><img src="/theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="/pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Mon 13 May 2013 : Projects : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="/yogcraft-and-server-texture-packs.html" rel="bookmark"
+         title="Permalink to YogCraft and Server Texture Packs">YogCraft and Server Texture Packs</a></h2>
+ 
+  <div class="entry-content">
+    <p><strong>Note: This post was originally published on iamianwright.com it's been moved here for archival purposes.</strong></p>
+<p>I have been running a private <a href="https://minecraft.net" title="Minecraft">Minecraft</a> server for myself and some friends for a while now.  We have been playing through a variety of <a href="http://www.minecraftwiki.net/wiki/Mods/Mod_packs" title="What is a Modpack?">Modpacks</a>, starting with <a href="http://www.technicpack.net/tekkit/" title="Tekkit Modpack">Tekkit</a> then <a href="http://www.technicpack.net/voltz" title="Voltz Modpack">Voltz</a> and yesterday we switched over to <a href="http://yogscast.wikia.com/wiki/Yogcraft" title="YogCraft Modpack">YogCraft</a>.</p>
+<p>On Minecraft servers you have the option to force users to download and automagically install a <a href="http://www.minecraftwiki.net/wiki/Texture_pack" title="What is a texture pack?">texture pack</a> when they join.  I've never tried this before but I thought I'd give it a go as I was starting a new server. <a href="http://www.minecraftforum.net/topic/1202413-common-answers-faq/#servertexture" title="How to use server-textures on a minecraft server"> The way it works</a> is that you need a zip file containing the texture pack somewhere publicly accessible on the internet and you modify the server.properties file to tell it where to find it.  I tried this but immediately realised that there is a limit of 10Mb for texture packs served in this way and the one I had was 38Mb!</p>
+<p><a href="https://mojang.atlassian.net/browse/MC-5238" title="Discussion about the 10Mb limit for texture packs">A little research</a> showed me that there are some command line utilities to optimize PNG files which might help reduce the file size. A guy <a href="http://calendar.perfplanet.com/2010/png-that-works/" title="A great article explaining the advantages of PNG">who knows a lot about PNGs</a> has made them more user friendly by making <a href="http://imageoptim.com" title="ImageOptim - make websites and apps load faster">a free drag and drop PNG optimiser called ImageOptim</a>. I gave it the texture pack to chew on, 1200+ images that come to 40.7Mb before zipping, and left it to cook overnight.  I knew I was being overly optimistic seeing as I would need a 74% reduction overall to get it within the maximum allowed file size.</p>
+<p>Additionally I found out that when you compress files on a Mac it includes all of the hidden system files (<a href="https://en.wikipedia.org/wiki/Resource_fork" title="What is a resource fork?">resource forks</a>) in the archive. For a texture pack the system files are redundant and potentially increase the overall file size. Fortunately there are several applications available that allow you to create zip archives without the system files. I already use a <a href="http://www.kekaosx.com/en/" title="Keka - the free Mac OS X file archiver">free application called Keka</a> to deal with archives and found that it offers this facility.</p>
+<p>So after running all of the images through <a href="http://imageoptim.com" title="ImageOptim - make websites and apps load faster">ImageOptim</a> I was left with a folder weighing in at 32.1Mb.  I then compressed it at the highest setting with with <a href="http://www.kekaosx.com/en/" title="Keka - the free Mac OS X file archiver">Keka</a> telling it to "exclude Mac resource forks" and was rewarded with a 29.9Mb file. For the sake of comparison using the built in Compress command in OS X created a 30.5Mb zip file so excluding the resource forks saved 0.6Mb.</p>
+<p>The net result is a decrease in file size of a little over 21% which although significant is sadly shy of the 74% saving required. So I guess I'll just email my friends a link to the zip and <a href="http://www.minecraftforum.net/topic/37295-how-to-installing-texture-packs-the-complete-guide/#mac" title="How to install texture packs for Minecraft on a Mac">instructions on how to install texture packs for Minecraft</a>.</p>
+<p>For the sake of anyone arriving here from google the folder for texture packs in YogCraft on the Mac is: <em>/Applications/YogCraft/minecraft/texturepacks</em></p>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="/lepai-lp-2020a-amp-review.html">
+                Lepai LP-2020A+ Amp Review
+            </a>
+        </li>
+        <li>
+            Next: <a href="/dynamically-generate-product-variations-with-php.html">
+                Dynamically Generate Product Variations with PHP
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Prev in Projects: <a href="/airplay-amp-on-a-budget.html">
+                Airplay Amp on a Budget
+            </a>
+        </li>
+        <li>
+            Next in Projects: <a href="/tekkit-classic-with-minecraft-162.html">
+                Tekkit Classic with Minecraft 1.6.2
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

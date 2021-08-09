@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block html_lang %}{{ article.lang }}{% endblock %}
+
+{% block title %}{{ SITENAME }} - {{ article.title|striptags  }}{% endblock %}
+
+{% block head %}
+  {{ super() }}
+
+  {% import 'translations.html' as translations with context %}
+  {% if translations.entry_hreflang(article) %}
+    {{ translations.entry_hreflang(article) }}
+  {% endif %}
+
+  {% if article.description %}
+    <meta name="description" content="{{article.description}}" />
+  {% endif %}
+
+  {% for tag in article.tags %}
+    <meta name="tags" content="{{tag}}" />
+  {% endfor %}
+
+{% endblock %}
+
+{% block content %}
+    <h3 class="date">{{ article.locale_date }} : {{ category }} : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
+         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+ {% import 'translations.html' as translations with context %}
+ {{ translations.translations_for(article) }}
+  <div class="entry-content">
+    {{ article.content }}
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+    {% if article.prev_article %}
+        <li>
+            Prev: <a href="{{ SITEURL }}/{{ article.prev_article.url}}">
+                {{ article.prev_article.title }}
+            </a>
+        </li>
+    {% endif %}
+    {% if article.next_article %}
+        <li>
+            Next: <a href="{{ SITEURL }}/{{ article.next_article.url}}">
+                {{ article.next_article.title }}
+            </a>
+        </li>
+    {% endif %}
+</ul>
+<ul>
+    {% if article.prev_article_in_category %}
+        <li>
+            Prev in {{ category }}: <a href="{{ SITEURL }}/{{ article.prev_article_in_category.url}}">
+                {{ article.prev_article_in_category.title }}
+            </a>
+        </li>
+    {% endif %}
+    {% if article.next_article_in_category %}
+        <li>
+            Next in {{ category }}: <a href="{{ SITEURL }}/{{ article.next_article_in_category.url}}">
+                {{ article.next_article_in_category.title }}
+            </a>
+        </li>
+    {% endif %}
+</ul>
+{% endblock %}

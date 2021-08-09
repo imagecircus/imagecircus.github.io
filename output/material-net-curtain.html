@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - Material: Net Curtain</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="blender" />
+    <meta name="tags" content="cycles" />
+    <meta name="tags" content="free" />
+    <meta name="tags" content="material" />
+    <meta name="tags" content="net-curtain" />
+    <meta name="tags" content="nodes" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="/"><img src="/theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="/pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Thu 13 July 2017 : Blender : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="/material-net-curtain.html" rel="bookmark"
+         title="Permalink to Material: Net Curtain">Material: Net Curtain</a></h2>
+ 
+  <div class="entry-content">
+    <p>I'm currently working on modelling the whole interior of the house my wife and I are buying. I'm one room in so far but I'll cover that in detail in another post soon. I hit a snag when I was trying to model the curtains for the windows though.</p>
+<p>How on earth do you make a net curtain material?</p>
+<p>I tried using the translucent material, then I tried using it mixed with the transparent material but nothing seemed quite right. I had a brief chat with Alex Saplacan on the UK &amp; Ireland Blender Users Slack group and he suggested using Wave Texture nodes to generate the lines in the fabric. After some fiddling about I came up with this which I think works pretty well.</p>
+<p><img alt="" src="img/Net-Curtain-Cycles-Material-Nodes.png"></p>
+<p>Applying it to a plane that I'd distorted using the cloth simulation gave a pretty believable result…</p>
+<p><img alt="Curtain with environment behind" src="img/curtain-with-environment.jpg"></p>
+<p>…and up close you can see the very fine fibres.</p>
+<p><img alt="Detail view of curtain with environment behind" src="img/close-up-curtain-with-environment.jpg"></p>
+<p>Hopefully someone out there will find this useful. I hope to share more materials as I make them throughout this project. I might also have to think about changing the design of this site to make it easier to find them once there's a decent library.</p>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="/custom-nerf-guns.html">
+                Custom Nerf Guns
+            </a>
+        </li>
+        <li>
+            Next: <a href="/choosing-a-thin-and-powerful-laptop-for-blender.html">
+                Choosing a thin and powerful laptop for blender
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Prev in Blender: <a href="/rendering-minecraft-in-blender.html">
+                Rendering Minecraft in Blender
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

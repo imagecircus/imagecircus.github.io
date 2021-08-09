@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - jQuery mousemove project</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="interactivity" />
+    <meta name="tags" content="jquery" />
+    <meta name="tags" content="mousemove" />
+    <meta name="tags" content="tracking" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="/"><img src="/theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="/pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Fri 06 January 2012 : Web Development : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="/jquery-mousemove-project.html" rel="bookmark"
+         title="Permalink to jQuery mousemove project">jQuery mousemove project</a></h2>
+ 
+  <div class="entry-content">
+    <p><strong>Note: This post was originally published on iamianwright.com it's been moved here for archival purposes.</strong></p>
+<p>I set myself a little project yesterday to make an image where the head follows the cursor around the screen.  I thought it would be an interesting way to learn jQuery.  I took nine images of me and then I put together a simple test.</p>
+<p>The image was set to absolute positioning, 200px from top and 200px from the left.  This allows me to set up a series of if statements that find out if the cursor was in a specific sector.</p>
+<p><img alt="" src="img/grid.jpg"></p>
+<p>The example is here: <a href="http://clients.imagecircus.com/jquery/" title="http://clients.imagecircus.com/jquery/">http://clients.imagecircus.com/jquery/</a></p>
+<p>The next step is to make all the measurements relative to the image.  With the current version the image must be absolutely positioned which is limiting.  Ultimately I would like to be able to place the image within a fluid layout and still have the interaction work.</p>
+<p>Having done some research online it looks like I need to use minus offsetLeft and minus offsetTop to set the origin to the top left of the image.  I am having some trouble figuring out the code though.  Hopefully one of my developer friends will point me in the right direction.</p>
+<p>Other improvements to make are making sure that the sectors overlap as currently there are dead spots between them that show the straight on image and perhaps more importantly preloading all the images.</p>
+<p>UPDATE: A photographer friend of mine took some better headshots so the example has been updated with those.</p>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Next: <a href="/360-controller-mac-steam-fun.html">
+                360 Controller + Mac + Steam != Fun
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Next in Web Development: <a href="/dynamically-generate-product-variations-with-php.html">
+                Dynamically Generate Product Variations with PHP
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

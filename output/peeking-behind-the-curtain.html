@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - Peeking behind the curtain</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="hosting" />
+    <meta name="tags" content="ubuntu" />
+    <meta name="tags" content="vps" />
+    <meta name="tags" content="wordpress" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="/"><img src="/theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="/pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Sun 03 May 2015 : Web Development : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="/peeking-behind-the-curtain.html" rel="bookmark"
+         title="Permalink to Peeking behind the curtain">Peeking behind the curtain</a></h2>
+ 
+  <div class="entry-content">
+    <p>Recently I've begun experimenting with things I would have thought impossible a few years ago. <a href="/over-engineering-firstworldproblems/">The python script I wrote last week</a> and the data scraping project that I've yet to write about have both made me realise that none of this stuff is witchcraft. With my hosting renewal coming up I started wondering about moving from shared hosting to a VPS.</p>
+<p>For the last decade my personal sites and email accounts have been hosted with the same shared hosting company. They have always provided me with excellent service for a reasonable price and I've always been happy to recommend them to my clients. Now that my requirements have reduced a little and I've been seeing VPS offered for a fraction of the cost I thought it worth investigating.</p>
+<p>It's probably worth noting that none of my sites are high traffic or high importance. They consist of this blog and its predecessor, a domain I bought for my wedding, a development server and my mostly dormant company site. I'm not sure that I'd be confident deploying a client's site on a VPS yet but for my needs it works just fine.</p>
+<h2>New adventures in hosting</h2>
+<p>For my first foray into configuring my own hosting I chose to go with <a href="https://www.digitalocean.com/?refcode=96d77d24bdc0">Digital Ocean's $10 VPS</a>. I had some teething troubles with their one-click WordPress installer so I decided to roll my own by following their excellent documentation.</p>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04">Initial Server Setup with Ubuntu 14.04</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers">Additional Recommended Steps for New Ubuntu 14.04 Servers</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04">Install Linux, Apache, MySQL, PHP (LAMP) stack on Ubuntu 14.04</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-14-04">Install Wordpress on Ubuntu 14.04</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-secure-updates-and-installations-in-wordpress-on-ubuntu">Configure Secure Updates and Installations in WordPress on Ubuntu</a></li>
+</ul>
+<p>All of that got this site up and running and allowed me to use WordPress' auto update feature. The only thing left to do was to get a mail server set up. I decided to take the easy option and went with <a href="https://www.zoho.com/">Zoho</a>. All you have to do is create a CNAME record for the domain to prove to Zoho that you own it and then you need to set two MX records and it's good to go.</p>
+<h2>The whole kit and caboodle</h2>
+<p>Having been encouraged by getting this blog working I span up another droplet and went through the first three tutorials again to get a LAMP stack up and running. This time I remembered to create a snapshot of it so in future I can just create a droplet with my preferences in one click.</p>
+<p>Once it was up and running I looked at the content I needed to migrate:</p>
+<ul>
+<li>Company site: A few php files</li>
+<li>Old blog: A WordPress site</li>
+<li>Development server: Several sites, mostly php but a few also require MySQL databases</li>
+<li>Wedding site: A holding page</li>
+</ul>
+<p>I guessed that it would be possible to host all of these on one droplet, as they're all fairly low traffic sites. I looked into setting up virtual hosts in apache and was relieved to find that again Digital Ocean's documentation didn't let me down.</p>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts">Set Up Apache Virtual Hosts on Ubuntu 14.04 LTS</a></li>
+</ul>
+<p>I had decided that there was no point continuing with the old blog as I hadn't posted in it for over a year. However I wanted to be a good net citizen and not break any old inbound links. So I decided to import the content of the old blog here and set up a redirect for old links. To redirect all requests from one domain to another all you need is these two lines in the .htaccess file on the old domain.</p>
+<p>[plain] RewriteEngine on RewriteRule (.*) http://www.newdomain.com/$1 [R=301,L] [/plain]</p>
+<p>Having set up four virtual hosts, transferred all of the required files, set up my .htaccess file and pointed my name servers at Digital Ocean my hosting was done. Setting up Zoho for each domain was a little laborious but as they provide free mail servers I'm not about to complain.</p>
+<h2>Was it worth it?</h2>
+<p>Compared to standard shared hosting you'll have a lot more passwords to keep track of, you'll spend most of your time in terminal rather than a web based control panel and you are your own tech support. It's definitely not for everyone and your mileage may vary but I learnt a lot from the process and have cut my hosting bill by about 66%.</p>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="/over-engineering-firstworldproblems.html">
+                Over-engineering #firstworldproblems
+            </a>
+        </li>
+        <li>
+            Next: <a href="/rendering-minecraft-in-blender.html">
+                Rendering Minecraft in Blender
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Prev in Web Development: <a href="/over-engineering-firstworldproblems.html">
+                Over-engineering #firstworldproblems
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

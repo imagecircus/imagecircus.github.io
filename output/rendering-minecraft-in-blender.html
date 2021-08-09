@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>idw.xyz - Rendering Minecraft in Blender</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Squada+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+
+
+
+    <meta name="tags" content="blender" />
+    <meta name="tags" content="cycles" />
+    <meta name="tags" content="minecraft" />
+    <meta name="tags" content="render" />
+
+</head>
+<body>
+<div class="pagewrapper">
+  <div class="left">
+      <nav>
+          <a href="/"><img src="/theme/images/idwxyz-masthead.png"></a>
+          <ul>
+            <li><a href="/pages/about-idw.html">About IDW</a></li>
+          </ul>
+      </nav>
+  </div>
+  <main>
+    <h3 class="date">Sat 23 May 2015 : Blender : Ian Dow-Wright</h3>
+    <h2 class="title">
+      <a href="/rendering-minecraft-in-blender.html" rel="bookmark"
+         title="Permalink to Rendering Minecraft in Blender">Rendering Minecraft in Blender</a></h2>
+ 
+  <div class="entry-content">
+    <p>I've been having an on and off love affair with <a href="https://www.blender.org/">Blender</a> for three years now. While it's true that the interface is bordering on user-hostile once you begin to understand the Blender way of doing things it is an incredibly capable piece of software.</p>
+<p>Recently I stumbled upon <a href="http://www.realtimerendering.com/erich/minecraft/public/mineways/">Mineways</a>, a free open-source program which allows you to export sections of your <a href="https://minecraft.net/">Minecraft</a> worlds for rendering or 3D printing. Being quite a fan of Minecraft (my wife and I had our Minecraft avatars on our wedding cake) I thought I'd have a play with it and see what I could make.</p>
+<h2>I did it Mineways</h2>
+<p>The <a href="http://www.realtimerendering.com/erich/minecraft/public/mineways/">Mineways</a> program itself is incredibly easy to use. Open up a world file, chose the maximum height and depth you would like in the final scene, ctrl-click (right-click) and drag over the section you would like to export and then export an OBJ file for rendering.</p>
+<p><img alt="Mineways" src="img/Mineways.jpg"></p>
+<p>Once Mineways has finished exporting you'll be left with several files:</p>
+<ul>
+<li>An OBJ file which we'll open in Blender</li>
+<li>An MTL file which specifies the materials for the model</li>
+<li>Three PNGs of Minecraft textures in RGB, RGBA and Alpha versions</li>
+</ul>
+<p>It's probably good housekeeping to put all of those files into a folder to keep everything organised and then we're ready to get into Blender.</p>
+<h2>Will it blend?</h2>
+<p>So first up you'll need to download and install <a href="https://www.blender.org/">Blender</a> (the current version is 2.74 at the time of writing). Next if you are completely unfamiliar with the software I would recommend you go and <a href="https://www.youtube.com/watch?v=y__uzGKmxt8">make a mug</a> to get up to speed with navigating the interface. You may also find that using a mouse makes it easier to navigate although it is possible with a multitouch trackpad (which is how I use it).</p>
+<p>Now that you have Blender installed and you know your way around it a little lets get started. Create a new file in Blender, you should have a scene with a cube in the middle of it. Right click on the cube to select it, press "x" on the keyboard and click on the delete option that appears under your cursor. This should leave you with an empty scene ready to import your model. To import the OBJ file select File &gt; Import &gt; Wavefront (.obj) and then navigate to the OBJ file created by Mineways.</p>
+<p>You should now see your model in all it's greyish beauty. To see a textured preview change the viewport shading mode to texture by pressing "alt+z" (option+z), to switch back press "z" to go to Wireframe mode and "z" again to get back to Solid mode.</p>
+<p><img alt="Blender Viewport Shading Modes" src="img/blender-screenshot.gif"></p>
+<p>Now to see how it renders we need to set up at least one light and one camera. Fortunately the default Blender scene contains a camera and a sun lamp so you should be nearly ready to go. Adjust your view by rotating, panning and zooming until you have a good view of the model. Then from the View menu at the bottom left of the panel you're working in select View &gt; Align View &gt; Align Active Camera to View.</p>
+<p>Now we're ready for our first render. Select the camera icon from the panel on the right to access the render settings. Set your resolution in the panel and then press the Render button. The output may look a little like this.</p>
+<p><img alt="Blender internal renderer" src="img/blender-internal-renderer-1024x640.jpg"></p>
+<p>My render came out particularly strangely as the world file I was working from came from a modded version of minecraft (<a href="https://www.atlauncher.com/downloads">ATlauncher</a>). Mineways is only designed for "vanilla" (non-modified) minecraft worlds so it converts blocks it doesn't recognise into bedrock. In this case it also got confused by the variety of trees available and made some trunks out of coal ore and some leaf blocks into wood blocks.</p>
+<p>It's fair to say that I was a little disappointed with this render but worry not things will get better. Blender has two built in renderers - the code that computes how the final image should look. Currently we are using Blender Render which is the original renderer for Blender and our other option is to use Cycles. <a href="https://blender.stackexchange.com/questions/5820/how-is-cycles-different-from-blender-internal">The differences between them are many</a> but essentially it boils down to Cycles being based on the physical world and therefore generally creating more realistic looking renders.</p>
+<h2>A new Cycle</h2>
+<p>There are definitely things we could do to improve the output in Blender Render but I'm going to suggest we jump ship to Cycles and get this render looking nice and smooth. Unfortunately however you can't just switch to Cycles and carry on rendering. You have to recreate all the textures in your scene using nodes.</p>
+<p>For most objects you just need to create a diffuse shader that uses an image texture as an input for the colour and then assign filename-RGBA.png as the texture. You can either do this in the materials tab on the right or in <a href="https://www.youtube.com/watch?v=1LRDR0WAneE">the node editor</a>.</p>
+<p><img alt="minecraft-diffuse-texture-nodes-cycles" src="img/minecraft-diffuse-texture-nodes-cycles.jpg"></p>
+<p>For objects that have transparency (leaves, flowers, grass, etc.) you'll need to add a mix shader between the diffuse shader and the material output. Then you'll need to connect a transparent shader to the first shader input of the mix shader and control its factor with filename-alpha.png.</p>
+<p>![minecraft-texture-nodes-cycles(img/minecraft-texture-nodes-cycles.jpg)</p>
+<p>Having made those changes you should get something like this.</p>
+<p><img alt="Full colour Minecraft render" src="img/full-colour-minecraft-render-1024x640.jpg"></p>
+<p>It takes a while to get all the materials set up and the render can take a long time (this image took about seven hours with a thousand samples) but the results speak for themselves.</p>
+<p>If you want to increase the "realism" you can experiment with lighting and add emission shaders to textures that should be light sources. In the image below the environment is set to black, the lava is a mix of diffuse and emission shaders and there is a dim moonlight from above.</p>
+<p><img alt="Lava Emission Shader in Cycles" src="img/minecraft-lava-emission-cycles.jpg"></p>
+<p>Switching to cycles won't solve any issues with incorrect or missing textures though, so for now it's probably best to stick to vanilla minecraft worlds. I'd really like to make some nice renders of the particle accelerators and nuclear power stations that my friends and I have built in the previous games so it may become the subject of a future post.</p>
+<h2>Beyond Minecraft</h2>
+<p>If you want to experiment further you can make your own textures and assign them to whichever objects you like. I tried another version using a mix shader that combined diffuse and glossy shaders to produce a material similar to a hard plastic.</p>
+<p><img alt="Hard white plastic cycles nodes" src="img/alpha-shader.jpg"></p>
+<p>I then added a plane beneath the minecraft model, scaled it so it expanded beyond the view of the camera and assigned the same texture to it. I also used a plane out of shot to the right with an emission shader to simulate the light of a soft box. The result is the bright and clean renders below.</p>
+<p><img alt="minecraft-white-render" src="img/minecraft-white-render-1024x768.jpg"></p>
+<p><img alt="Close up of Mix shader in Cycles" src="img/minecraft-header.jpg"></p>
+<h2>A quick bonus</h2>
+<p>The day after I posted this I found a YouTube video that explains <a href="https://www.youtube.com/watch?v=MCUtIdpGhU8">how to render minecraft items in Blender</a>. It's really quick and easy to follow, best of all you can use it with cycles by creating a diffuse shader with the colour input set to the image.</p>
+<p><img alt="Minecraft Iron Sword" src="img/ironsword.jpg"></p>
+  </div><!-- /.entry-content -->
+  <hr>
+  <ul>
+        <li>
+            Prev: <a href="/peeking-behind-the-curtain.html">
+                Peeking behind the curtain
+            </a>
+        </li>
+        <li>
+            Next: <a href="/building-a-pc-for-blender.html">
+                Building a PC for Blender
+            </a>
+        </li>
+</ul>
+<ul>
+        <li>
+            Next in Blender: <a href="/material-net-curtain.html">
+                Material: Net Curtain
+            </a>
+        </li>
+</ul>
+  </main>
+  <div class="break"></div>
+  <footer>
+    <address id="about" class="vcard body">
+      Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+      which takes great advantage of <a href="https://www.python.org/">Python</a>.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

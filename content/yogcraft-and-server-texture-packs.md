@@ -1,0 +1,20 @@
+title: YogCraft and Server Texture Packs
+date: 2013-05-13
+category: Projects
+tags: 10mb, feed-the-beast, free-apps, mac, minecraft, optimise, png, server, server-texture, tekkit, texture-pack, voltz, yogcraft, zip
+
+**Note: This post was originally published on iamianwright.com it's been moved here for archival purposes.**
+
+I have been running a private [Minecraft](https://minecraft.net "Minecraft") server for myself and some friends for a while now.  We have been playing through a variety of [Modpacks](http://www.minecraftwiki.net/wiki/Mods/Mod_packs "What is a Modpack?"), starting with [Tekkit](http://www.technicpack.net/tekkit/ "Tekkit Modpack") then [Voltz](http://www.technicpack.net/voltz "Voltz Modpack") and yesterday we switched over to [YogCraft](http://yogscast.wikia.com/wiki/Yogcraft "YogCraft Modpack").
+
+On Minecraft servers you have the option to force users to download and automagically install a [texture pack](http://www.minecraftwiki.net/wiki/Texture_pack "What is a texture pack?") when they join.  I've never tried this before but I thought I'd give it a go as I was starting a new server. [ The way it works](http://www.minecraftforum.net/topic/1202413-common-answers-faq/#servertexture "How to use server-textures on a minecraft server") is that you need a zip file containing the texture pack somewhere publicly accessible on the internet and you modify the server.properties file to tell it where to find it.  I tried this but immediately realised that there is a limit of 10Mb for texture packs served in this way and the one I had was 38Mb!
+
+[A little research](https://mojang.atlassian.net/browse/MC-5238 "Discussion about the 10Mb limit for texture packs") showed me that there are some command line utilities to optimize PNG files which might help reduce the file size. A guy [who knows a lot about PNGs](http://calendar.perfplanet.com/2010/png-that-works/ "A great article explaining the advantages of PNG") has made them more user friendly by making [a free drag and drop PNG optimiser called ImageOptim](http://imageoptim.com "ImageOptim - make websites and apps load faster"). I gave it the texture pack to chew on, 1200+ images that come to 40.7Mb before zipping, and left it to cook overnight.  I knew I was being overly optimistic seeing as I would need a 74% reduction overall to get it within the maximum allowed file size.
+
+Additionally I found out that when you compress files on a Mac it includes all of the hidden system files ([resource forks](https://en.wikipedia.org/wiki/Resource_fork "What is a resource fork?")) in the archive. For a texture pack the system files are redundant and potentially increase the overall file size. Fortunately there are several applications available that allow you to create zip archives without the system files. I already use a [free application called Keka](http://www.kekaosx.com/en/ "Keka - the free Mac OS X file archiver") to deal with archives and found that it offers this facility.
+
+So after running all of the images through [ImageOptim](http://imageoptim.com "ImageOptim - make websites and apps load faster") I was left with a folder weighing in at 32.1Mb.  I then compressed it at the highest setting with with [Keka](http://www.kekaosx.com/en/ "Keka - the free Mac OS X file archiver") telling it to "exclude Mac resource forks" and was rewarded with a 29.9Mb file. For the sake of comparison using the built in Compress command in OS X created a 30.5Mb zip file so excluding the resource forks saved 0.6Mb.
+
+The net result is a decrease in file size of a little over 21% which although significant is sadly shy of the 74% saving required. So I guess I'll just email my friends a link to the zip and [instructions on how to install texture packs for Minecraft](http://www.minecraftforum.net/topic/37295-how-to-installing-texture-packs-the-complete-guide/#mac "How to install texture packs for Minecraft on a Mac").
+
+For the sake of anyone arriving here from google the folder for texture packs in YogCraft on the Mac is: _/Applications/YogCraft/minecraft/texturepacks_
