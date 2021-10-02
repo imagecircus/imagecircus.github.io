@@ -56,6 +56,11 @@ main {
 footer {
     flex: 1;
     text-align: center;
+    padding: 80px 0 40px 0;
+}
+
+address#about {
+    font-size: 10pt;
 }
 
 .break {
@@ -135,4 +140,26 @@ pre {
     white-space: -pre-wrap;      /* Opera 4-6 */
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.prevnext {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.prev, .next {
+    width: 40%;
+}
+
+.prev {
+    margin: 0 0 0 0;
+}
+
+.next {
+    text-align: right;
+    margin: 0 0 0 20%;
+}
+
+.prev strong, .next strong {
+    font-family: 'Squada One';
 }

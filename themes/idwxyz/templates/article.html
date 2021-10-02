@@ -32,36 +32,22 @@
     {{ article.content }}
   </div><!-- /.entry-content -->
   <hr>
-  <ul>
-    {% if article.prev_article %}
-        <li>
-            Prev: <a href="{{ SITEURL }}/{{ article.prev_article.url}}">
-                {{ article.prev_article.title }}
-            </a>
-        </li>
-    {% endif %}
-    {% if article.next_article %}
-        <li>
-            Next: <a href="{{ SITEURL }}/{{ article.next_article.url}}">
-                {{ article.next_article.title }}
-            </a>
-        </li>
-    {% endif %}
-</ul>
-<ul>
-    {% if article.prev_article_in_category %}
-        <li>
-            Prev in {{ category }}: <a href="{{ SITEURL }}/{{ article.prev_article_in_category.url}}">
-                {{ article.prev_article_in_category.title }}
-            </a>
-        </li>
-    {% endif %}
-    {% if article.next_article_in_category %}
-        <li>
-            Next in {{ category }}: <a href="{{ SITEURL }}/{{ article.next_article_in_category.url}}">
-                {{ article.next_article_in_category.title }}
-            </a>
-        </li>
-    {% endif %}
-</ul>
+  <div class="prevnext">
+      <div class="prev">
+        {% if article.prev_article %}
+        <strong>&lt; Previous Post<br></strong>
+        <a href="{{ SITEURL }}/{{ article.prev_article.url}}">
+            {{ article.prev_article.title }}
+        </a>
+        {% endif %}
+      </div>
+      <div class="next">
+        {% if article.next_article %}
+        <strong>Next Post&gt;<br></strong>
+        <a href="{{ SITEURL }}/{{ article.next_article.url}}">
+            {{ article.next_article.title }}
+        </a>
+        {% endif %}
+      </div>
+  </div>
 {% endblock %}
